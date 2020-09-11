@@ -1,0 +1,10 @@
+<h1>
+	These are books!!
+</h1>
+
+<% books.forEach(function(book){ %>
+	<div>
+		<h4><%= book.name %></h4>
+		<img src="<%= book.image %>">
+	</div>
+<% }) %>

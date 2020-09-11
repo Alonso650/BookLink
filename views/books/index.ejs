@@ -1,0 +1,47 @@
+<%- include("../partials/header") %>
+
+<header class="jumbotron">
+	<div class="container">
+		<h1>Welcome to This Dope Book Club Bruh</h1>
+		<p>View some of the top recommended books on ths original site</p>
+		<p>
+			<a class="btn btn-primary btn-lg" href="/books/new">Add New Book Entry</a>
+		</p>
+		<% if(nomatch === null){ %>
+			<p1>
+				<form action="/books" method="GET" class="form-inline">
+					<div class="form-group">
+						<input type="text" name="search" placeholder="Bruh...." class="form-control">
+						<input type="submit" value="Search" class="btn btn-primary">
+					</div>
+				</form>
+			</p1>
+		<% } %>
+	</div>
+</header>
+
+<div class="row text-center">
+	<div class="col-md-12">
+		<% if(noMatch !== null){ %>
+			<p1>
+				<form action="/books" method="GET" class="form-inline">
+					<div class="form-group">
+						<input type="text" name="search" placeholder="Bruh really..." class="form-control">
+						<input type="submit" value="Search" class="btn btn-primary">
+					</div>
+				</form> 
+			</p1>
+		<% } %>
+	</div>
+	<% books.forEach(function(book){ %>
+		<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+			<div class="card">
+				<img src="<%= book.image %>" class="card-img-top" alt="<%= book.title %>">
+				<div class="card-body">
+					<h5 class="card-title"><%= book.title %></h5>
+					<a href="/books/<%= book.slug %>" class="btn btn-primary">More info</a>
+				</div>
+			</div>
+		</div>
+	<% }); %>
+</div>
