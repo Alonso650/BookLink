@@ -17,8 +17,18 @@
 			</div>
 			<div class="form-group">
 				<label for="image">Image</label>
-				<input type=
+				<input type="file" id="image" accept="image/*" required>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-lg btn-primary btn-block">Submit</button>
+			</div>
+			<div class="form-group">
+				<input class="form-control" type="text" name="book[description]" placeholder="Description">
 			</div>
 		</form>
+	
+		<a href="/books">Return</a>
 	</div>
 </div>
+
+<%- include("../partials/footer") %>
