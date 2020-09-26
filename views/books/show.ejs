@@ -64,6 +64,63 @@
 			</div>
 		</div>
 		<!-- Collpase ADD COMMENT FORM END -->
+		<hr>
+		<!--- Check if there are comments, if there are none then display no comments -->
+		<% if(books.comments.length === 0){ %>
+			<em style="color: grey; ">No Comments</em>
+		<% } %>
+		<div class="card-body">
+			<% books.comments.forEach(function(comment){ %>
+				<div class="row">
+					<div class="col-md-12">
+						<strong>
+							<%if(currentUser && currentUser._id.equals(comment.author.id)){ %>												<!-- If the current user owns the comment, change color of the user icon-->
+							<% } else { %>
+								<!-- Else display it black-->
+							<% } %>
+							<!-- printing out the authors username (MIGHT HAVE TO CHANGE THIS) -->
+							<div style="display: inline; "><%= comment.author.username %></div>
+						</strong>
+						<!-- Display when a comment was made -->
+						<small class="text-muted"><%= moment(comment.createdAt).fromNow() %></small>
+						<!-- Printing the comment -->
+						<p><%= comment.text %></p>
+						<!-- If visitor is logged in and owner of posted comment, show the edit and delete buttons -->
+						<% if(currentUser && currentUser._id.equals(comment.author.id || currentUser && currentUser.isAdmin) || currentUser && currentUser.isAdmin){ %>
+							<!-- Edit button  used for collapsing edit comment form -->
+							<a class="btn btn-xs btn-warning" role="button" data-toggle="collapse" href="#collapseEdit<%= comment._id %>" aria-expanded="false" aria-controls="collapse<%= comment._id %>">Edit</a>	
+							<!-- Delete button-->
+							<form id="delete-form" action="/books/<%= book.slug %>/comments/<%= comment._id %>?_method=DELETE" method="POST" style="display: inline;">
+								<button class="btn btn-xs btn-danger">Delete</button>	
+							</form>
+							<!-- Edit comment form -->
+							<div class="collapse" id="collapseEdit<%= comment._id %>">
+								<div class="card border-warning" style="border-left: 5px solid; margin-top: 15px;">
+									<div class="card-ehader card-body">
+										<h4>Edit Your Comment</h4>
+										<form id="edit-comment-form<%= comment._id %>" action="/books/<%= books.slug %>/comments/<%= comment._id %>?_method=PUT" method="POST">
+											<div class="form-group">
+												<input class="form-control" type="text" disabled value="<%= currentUser.username %>">
+											</div>
+											<div class="form-group">
+												<textarea class="form-control" name="comment[text]" placeholder="This is where you can post your comment..." form="edit-comment-form<%= comment._id %>" rows="5" cols="70"><%= comment.text %></textarea> 
+											</div>
+											<div class="form-group">
+												<button class="btn btn-warning btn-sm">Edit comment</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						
+							
+						<% } %>
+					</div>
+				</div>
+			<% }) %>
+		</div>
 		
 	</div>
 </div>
+
+<%- include("../partials/footer") %>
