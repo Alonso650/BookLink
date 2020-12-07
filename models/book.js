@@ -35,8 +35,8 @@ bookSchema.pre('save', async function(next){
 	try{
 		// check if a new campground is being saved, or if the campground name is
 		// being modified
-		if(this.isNew || this.isModified("name")){
-			this.slug = await generateUniqueSlug(this._id, this.name);
+		if(this.isNew || this.isModified("title")){
+			this.slug = await generateUniqueSlug(this._id, this.title);
 		}
 		next();
 	} catch(err){

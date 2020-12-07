@@ -5,7 +5,7 @@ var nodemailer = require("nodemailer");
 var User = require("../models/user");
 var { isLoggedIn } = require("../middleware");
 var async = require("async");
-var Book = require("../models/books");
+var Book = require("../models/book");
 var crypto = require("crypto");
 
 // the root route
@@ -109,11 +109,11 @@ router.post("/forgot", function(req, res, next){
 			var mailOptions = {
 				to: user.email,
 				from: 'hectoralonzotorres@gmail.com',
-				subject: 'YOU FUCKED UP LMAO',
+				subject: 'Password Reset Requested',
 				text: 'You are receiving this because you (or someon else) has requested to reset the password for your account.\n\n' + 
 					'Please click on the following link, or paste this in your browser to complete the process.\n\n' +
 					'http:/' + req.headers.host + '/reset/' + token + '\n\n' +
-					'If you did not request this dope ass message, please ignore the shit out of this email and your password will be aite.\n'
+					'If you did not request this message, please ignore this email and your password will be unchanged.\n'
 			};
 			smtpTransport.sendMail(mailOptions, function(err){
 				console.log('mail sent');
@@ -176,7 +176,7 @@ router.post('/reset/:token', function(req, res){
 			var mailOptions = {
 				to: user.email,
 				from: 'hectoralonzotorres@gmail.com',
-				subject: "I guess your password changed now idk why tho...",
+				subject: "Password Successfully Changed!",
 				text: 'Hello,\n\n' +
 					'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
 			};

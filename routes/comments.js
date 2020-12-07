@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router({mergeParams: true});
-var Book = require("../models/books");
-var Comment = require("../models/comments");
+var Book = require("../models/book");
+var Comment = require("../models/comment");
 var middleware = require("../middleware");
 
 // NEW COMMENT ROUTE
@@ -22,7 +22,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
 // CREATE COMMENT ROUTE
 router.post("/", middleware.isLoggedIn, function(req, res){
 	// lookup book using ID
-	book.findOne({slug: req.params.slug}, function(err, book){
+	Book.findOne({slug: req.params.slug}, function(err, book){
 		if(err){
 			req.message('error', err.message);
 		} else{
@@ -33,7 +33,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 				} else{
 					// add username and id to comment
 					comment.author.id = req.user._id;
-					comment.author.username = req.user._username;
+					comment.author.username = req.user.username;
 					
 					// save comment
 					comment.save();

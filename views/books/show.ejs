@@ -1,4 +1,4 @@
-<%- include("..partials/header") %>
+<%- include("../partials/header") %>
 
 <div class ="row">
 	<div class="col-md-9">
@@ -13,7 +13,7 @@
 				</p>
 				<hr>
 				<p class="card-text"><%= book.description %></p>
-				<% if(currentUser && book.author.id.equals(currenUser_.id) || currentUser && currentUser.isAdmin){ %>
+				<% if(currentUser && book.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
 					<a class="btn btn-xs btn btn-warning" href="/books/<%= book.slug %>/edit">Update</a>
 					<form class="delete-form" action="/books<%= book.slug %>?_method=DELETE" method="POST">
 						<button class="btn btn-xs btn btn-danger">DELETE</button>
@@ -66,11 +66,11 @@
 		<!-- Collpase ADD COMMENT FORM END -->
 		<hr>
 		<!--- Check if there are comments, if there are none then display no comments -->
-		<% if(books.comments.length === 0){ %>
+		<% if(book.comments.length === 0){ %>
 			<em style="color: grey; ">No Comments</em>
 		<% } %>
 		<div class="card-body">
-			<% books.comments.forEach(function(comment){ %>
+			<% book.comments.forEach(function(comment){ %>
 				<div class="row">
 					<div class="col-md-12">
 						<strong>
@@ -98,7 +98,7 @@
 								<div class="card border-warning" style="border-left: 5px solid; margin-top: 15px;">
 									<div class="card-ehader card-body">
 										<h4>Edit Your Comment</h4>
-										<form id="edit-comment-form<%= comment._id %>" action="/books/<%= books.slug %>/comments/<%= comment._id %>?_method=PUT" method="POST">
+										<form id="edit-comment-form<%= comment._id %>" action="/books/<%= book.slug %>/comments/<%= comment._id %>?_method=PUT" method="POST">
 											<div class="form-group">
 												<input class="form-control" type="text" disabled value="<%= currentUser.username %>">
 											</div>

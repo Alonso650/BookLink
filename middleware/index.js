@@ -1,30 +1,32 @@
-var Book = require("../models/books");
-var Comment = require("../models/comments");
+var Book = require("../models/book");
+var Comment = require("../models/comment");
 
 var middlewareObj = {};
 
-middlewareObj.checkBookOwner = function(req, res, next){
+middlewareObj.checkBookOwnership = function(req, res, next){
 	if(req.isAuthenticated()){
-		//does the user own the book posting?
+	//does user own the book?
 		Book.findOne({slug: req.params.slug}, function(err, foundBook){
 			if(err || !foundBook){
-				req.flash("error", "Book was not found");
-				res.redirect("/books");
+				req.flash("error", "Book not found");
+				res.redirect("/books")
 			} else{
-				// does the user own the book posting?
+				//does user own the campground?
 				if(foundBook.author.id.equals(req.user._id) || req.user.isAdmin){
 					next();
 				} else{
-					req.flash("error", "You do not have permission to do that");
+					req.flash("error", "You don't have permission to do that");
+					// res.redirect("/campgrounds/" + req.params.id);
 					res.redirect("back");
 				}
 			}
-		});
-	} else{
-		req.flash("error", "You must be logged in to perform that activity");
-		res.redirect("back");
+			});
+		} else{
+			req.flash("error", "You need to be logged in to do that");
+			// res.redirect("/campgrounds");
+			res.redirect("back");
+		}
 	}
-}
 
 middlewareObj.checkCommentOwner = function(req, res, next){
 	if(req.isAuthenticated()){
