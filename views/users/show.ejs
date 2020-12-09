@@ -1,11 +1,11 @@
 <%- include("../partials/header") %>
 <div class="row">
 	<div class="col-md-4">
-		<h1> <%=user.firstName + " " + user.lastName %></h1>
+		<h3> <%=user.firstName + " " + user.lastName %></h3>
 		<div class="thumbnail">
 			<img src="<%= user.avatar%>" alt="user profile image">
 			<div class="caption">
-				<a href="mailto:<%=user.email%>"><%=user.email%></a>
+				Email: <a href="mailto:<%=user.email%>"> <%=user.email%></a>
 				<!-- include some bio option on the person -->
 			</div>
 		</div>
@@ -14,7 +14,7 @@
 		<h3><%=user.username%>'s books:</h3>
 		<ul>
 			<% books.forEach(function(book){ %>
-			<li><a href="/books/<%=book.id%>"><%= book.name %></a></li>
+			<li><a href="/books/<%=book.slug%>"><%= book.title %></a></li>
 			<% }) %>
 		</ul>
 	</div>

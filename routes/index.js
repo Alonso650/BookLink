@@ -195,16 +195,16 @@ router.post('/reset/:token', function(req, res){
 router.get("/users/:id", function(req, res){
 	User.findById(req.params.id, function(err, foundUser){
 		if(err){
-			req.flash("error", "Something went wrong lol");
+			req.flash("error", "Something went wrong");
 			return res.redirect("/");
 		}
-		Book.find().where("author.id").equals(foundUser._id.exec(function(err, books){
+		Book.find().where("author.id").equals(foundUser._id).exec(function(err, books){
 			if(err){
 				req.flash("error", "Something went wrong.");
 				return res.redirect("/");
 			}
 		res.render("users/show", {user: foundUser, books: books});
-		}));
+		});
 	});
 });
 

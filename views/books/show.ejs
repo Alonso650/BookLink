@@ -5,17 +5,18 @@
 		<div class="card">
 			<img src="<%=book.image %>" class="card-img-top" alt="<%= book.title %>">
 			<div class="card-body">
-				<p class="float-right">Genre: <%= book.genre %></p>
+				<p class="float-right">Author: <%= book.bookAuthor %></p>
 				<h5 class="card-title float-left"><%= book.title %></h5>
 				<div class="clearfix"></div>
 				<p>
 					<em>Posted By <a href="/users/<%= book.author.id %>"><%= book.author.username %></a>, <%= moment(book.createdAt).fromNow() %></em>
+					<p1 class="float-right">Genre: <%= book.genre %></p1>
 				</p>
 				<hr>
 				<p class="card-text"><%= book.description %></p>
 				<% if(currentUser && book.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
 					<a class="btn btn-xs btn btn-warning" href="/books/<%= book.slug %>/edit">Update</a>
-					<form class="delete-form" action="/books<%= book.slug %>?_method=DELETE" method="POST">
+					<form class="delete-form" action="/books/<%= book.slug %>?_method=DELETE" method="POST">
 						<button class="btn btn-xs btn btn-danger">DELETE</button>
 					</form>					
 				<% } %>

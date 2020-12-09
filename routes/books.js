@@ -309,6 +309,9 @@ router.get("/:slug/edit", middleware.checkBookOwnership, function(req, res){
 			}
 			book.title = req.body.book.title;
 			book.description = req.body.book.description;
+			book.bookAuthor = req.body.book.bookAuthor;
+			// book.image = req.body.book.image;
+			book.genre = req.body.book.genre;
 			book.save();
 			req.flash("success", "Successfully Updated!");
 			res.redirect("/books/" + book.slug);
@@ -334,7 +337,6 @@ router.delete("/:slug", middleware.checkBookOwnership, function(req, res){
 				req.flash("error", err.message);
 				return res.redirect("back");
 			}
-			
 		}
 	});
 });

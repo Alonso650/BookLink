@@ -10,6 +10,10 @@ var bookSchema = new mongoose.Schema({
 	imageId: String,
 	genre: String,
 	description: String,
+	bookAuthor:{
+		type: String,
+		requried: "Book author cannot be blank."
+	},
 	createdAt: {type: Date, default: Date.now},
 	author:{
 		id: {

@@ -3,16 +3,19 @@
 <%- include("../partials/header") %>
 	<div class="row justify-content-center">
 		<div class="col-md-12 text-center">
-			<h1>Create a Book</h1>
+			<h1>Create A Book Entry</h1>
 		</div>
 		<div class="col-xs-12 col-md-6 col-lg-4">		
 			<form action="/books" method="POST" enctype="multipart/form-data">
 				<div class="form-group">
 					<input class="form-control" type="text" name="book[title]" placeholder="name">
 				</div>
-				<!-- <div class="form-group">
-					<input class="form-control" type="number" name="campgro[price]" placeholder="price" min="0" step="0.01" required>
-				</div> -->
+				<div class="form-group">
+					<input class="form-control" type="text" name="book[bookAuthor]" placeholder="author">
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="text" name="book[genre]" placeholder="genre">
+				</div>
 				<div class="form-group">
 					<label for="image">Image</label>
 					<input type="file" id="image" name="image" accept="image/*" required>
@@ -20,15 +23,11 @@
 				<div class="form-group">
 					<input class="form-control" type="text" name="book[description]" placeholder="description">
 				</div>
-				<!-- <div class="form-group">
-					<label for="location">Location</label>
-					<input class="form-control" type="text" name="location" id="location" placeholder="Yosemite National Park, CA">
-				</div> -->
 				<div class="form-group">
 					<button class="btn btn-lg btn-primary btn-block">Submit!</button>
 				</div>
 			</form>
-			<a href="/books">Go Back</a>
+			<a href="/books">Return</a>
 			</div>
 	</div>
 <%- include("../partials/footer") %>
