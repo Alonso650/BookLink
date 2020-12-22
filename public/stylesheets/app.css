@@ -53,9 +53,21 @@ body{
 	margin: 20px 0;
 }
 
+img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  /* height: 300px; */
+  height: auto;
+  width: 300px;
+  /* width: auto; */
+  object-fit: hidden;
+} 
+
+
 
 .thumbnail img{
-	width: 100%;
+	height: 100%;
 }
 
 .thumbnail{

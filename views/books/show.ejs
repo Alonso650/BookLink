@@ -5,12 +5,12 @@
 		<div class="card">
 			<img src="<%=book.image %>" class="card-img-top" alt="<%= book.title %>">
 			<div class="card-body">
-				<p class="float-right">Author: <%= book.bookAuthor %></p>
+				<p class="float-right">Genre: <%= book.genre %></p>
 				<h5 class="card-title float-left"><%= book.title %></h5>
 				<div class="clearfix"></div>
 				<p>
 					<em>Posted By <a href="/users/<%= book.author.id %>"><%= book.author.username %></a>, <%= moment(book.createdAt).fromNow() %></em>
-					<p1 class="float-right">Genre: <%= book.genre %></p1>
+					<p1 class="float-right">Author: <%= book.bookAuthor %></p1>
 				</p>
 				<hr>
 				<p class="card-text"><%= book.description %></p>
@@ -30,7 +30,7 @@
 				<a class="btn btn-success float-right" role="button" data-toggle="collapse" href="#collapseComment" aria-expanded="false" aria-controls="collapseComment">Add New Comment</a>
 				<!-- Comment Section Title -->
 				<h4><Strong>Comments</Strong></h4>
-			</div>
+			<!-- </div> -->
 			<!-- Collapse Add a comment form start-->
 			<div class="collapse" id="collapseComment">
 				<div class="card-body">
@@ -55,7 +55,7 @@
 										<textarea class="form-control" name="comment[text]" placeholder="Begin to write a fabolous comment....." form="add-comment-form" rows="5" cols="70"></textarea>
 									</div>
 									<div class="form-group">
-										<button class="btn btn-success btn-sm">Add Comment</button>
+										<button class="btn btn-success btn-sm">Post</button>
 									</div>
 								</form>
 							</div>
@@ -63,6 +63,7 @@
 					<% } %>
 				</div>
 			</div>
+			<!-- </div> -->
 		</div>
 		<!-- Collpase ADD COMMENT FORM END -->
 		<hr>
