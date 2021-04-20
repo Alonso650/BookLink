@@ -156,16 +156,7 @@ router.get("/", function(req, res){
  //        username: req.user.username
  //      }
 		
-	  //parse the geographic data and save
-	  // geocoder.geocode(req.body.location, function(err, data){
-	  // if(err || !data.length){
-	  // req.flash('error', 'Invalid address');
-	  // return res.redirect('back');
-	  // }
-	  // // parse the object campground
-	  // req.body.campground.lat = data[0].latitude;
-	  // req.body.campground.lng = data[0].longitude;
-	  // req.body.campground.location = data[0].formattedAddress;
+
 	  
 // 	Book.create(req.body.books, function(err, books) {
 // 		if (err) {
@@ -200,16 +191,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
         username: req.user.username
       }
 		
-	  //parse the geographic data and save
-	  // geocoder.geocode(req.body.location, function(err, data){
-	  // if(err || !data.length){
-	  // req.flash('error', 'Invalid address');
-	  // return res.redirect('back');
-	  // }
-	  // // parse the object campground
-	  // req.body.campground.lat = data[0].latitude;
-	  // req.body.campground.lng = data[0].longitude;
-	  // req.body.campground.location = data[0].formattedAddress;
+
 	  
       Book.create(req.body.book, function(err, book) {
         if (err) {
@@ -280,15 +262,6 @@ router.get("/:slug/edit", middleware.checkBookOwnership, function(req, res){
 // });
 
  router.put("/:slug", upload.single('image'), middleware.checkBookOwnership, function(req, res){
-	//geocode
-	// geocoder.geocode(req.body.location, function(err, data){
-	// 	if(err || !data.length){
-	// 		req.flash('error', 'Invalid address');
-	// 		return res.redirect('back');
-	// 	}
-	// 	req.body.campground.lat = data[0].latitude;
-	// 	req.body.campground.lng = data[0].longitude;
-	// 	req.body.campground.location = data[0].formattedAddress;
 	
 	// find and update the correct campground
 	Book.findOne({slug: req.params.slug}, async function(err, book){
