@@ -56,7 +56,7 @@ app.use("/books/:slug/comments", commentRoutes);
 app.use("/books", bookRoutes);
 
 
-
-app.listen(3000, () =>{
+const port = process.env.PORT || 3000;
+app.listen(port, () =>{
 	console.log("The book server has started")
 });
