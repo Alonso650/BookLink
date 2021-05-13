@@ -89,6 +89,37 @@ router.get("/", function(req, res){
 });
 
 
+<<<<<<< HEAD
+=======
+// CREATE - add new campground to DB
+ // router.post("/", middleware.isLoggedIn, upload.single('image'), function(req, res) {
+ //    cloudinary.v2.uploader.upload(req.file.path, function(err, result) {
+ //      if(err) {
+ //        req.flash('error', err.message);
+ //        return res.redirect('back');
+ //      }
+ //      // add cloudinary url for the image to the campground object under image property
+ //      req.body.books.image = result.secure_url;
+ //      // add image's public_id to campground object
+ //      req.body.books.imageId = result.public_id;
+ //      // add author to campground
+ //      req.body.books.author = {
+ //        id: req.user._id,
+ //        username: req.user.username
+ //      }
+		
+
+	  
+// 	Book.create(req.body.books, function(err, books) {
+// 		if (err) {
+// 			req.flash('error', err.message);
+// 		  	return res.redirect('back');
+// 		}
+// 		res.redirect('/books/' + books.slug);
+// 		});
+// 	});
+// });
+>>>>>>> ec09d85f2e6661688154172598de93adca7e9ef6
 
 // NEW - show form to create a new book entry
 // This usually gets declared first
@@ -113,6 +144,10 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
         username: req.user.username
       }
 		
+<<<<<<< HEAD
+=======
+
+>>>>>>> ec09d85f2e6661688154172598de93adca7e9ef6
 	  
       Book.create(req.body.book, function(err, book) {
         if (err) {
