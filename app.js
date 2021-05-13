@@ -16,7 +16,7 @@ var commentRoutes = require("./routes/comments");
 var bookRoutes = require("./routes/books");
 var indexRoutes = require("./routes/index");
 
-mongoose.connect('mongodb+srv://Alonso650:pimpzilla650@cluster0.fmuux.mongodb.net/<dbname>?retryWrites=true&w=majority',{
+mongoose.connect(process.env.MONGODB,{
 	useNewUrlParser: true,
 	useCreateIndex: true
 }).then(() => {

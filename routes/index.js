@@ -56,7 +56,7 @@ router.post("/login", passport.authenticate("local",
 				successRedirect: "/books",
 				failureRedirect: "/login",
 				failureFlash: true,
-				successFlash: "Bienvendo a la Clubz"
+				successFlash: "Sucess!"
             }), function(req, res){
 	
 });
@@ -103,7 +103,7 @@ router.post("/forgot", function(req, res, next){
 				service: 'Gmail',
 				auth:{
 					user: 'hectoralonzotorres@gmail.com',
-					pass: 'pimpzilla650'
+					pass: process.env.GMAILPW
 				}
 			});
 			var mailOptions = {
@@ -170,7 +170,7 @@ router.post('/reset/:token', function(req, res){
 				service: 'Gmail',
 				auth:{
 					user: 'hectoralonzotorres@gmail.com',
-					pass: 'pimpzilla650'
+					pass: process.env.GMAILPW
 				}
 			});
 			var mailOptions = {
@@ -181,7 +181,7 @@ router.post('/reset/:token', function(req, res){
 					'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
 			};
 			smtpTransport.sendMail(mailOptions, function(err){
-				req.flash('success', 'Yay, Your password changed and now you will prolly forget again eventually.');
+				req.flash('success', 'Yay, Your password changed successfully');
 				done(err);
 			});
 		}

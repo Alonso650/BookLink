@@ -1,24 +1,25 @@
 <%- include("../partials/header") %>
 
-<header class="jumbotron">
+<!-- <header class="jumbotron">
 	<div class="container">
-		<h1>Welcome to This Dope Book Club Bruh</h1>
-		<p>View some of the top recommended books on ths original site</p>
+		<h1 class="row text-center">Welcome to BookLink</h1>
+		<p>View some of the submitted entries</p>
 		<p>
-			<a class="btn btn-primary btn-lg" href="/books/new">Add New Book Entry</a>
+			<a class="btn btn-outline-info btn-lg" href="/books/new">Add a BookLink Entry</a>
 		</p>
 		<% if(noMatch === null){ %>
 			<p1>
 				<form action="/books" method="GET" class="form-inline">
 					<div class="form-group">
-						<input type="text" name="search" placeholder="Bruh...." class="form-control">
-						<input type="submit" value="Search" class="btn btn-primary">
+						<input type="text" name="search" placeholder="Search for a book...." class="form-control">
+						<input type="submit" value="Search" class="btn btn-outline-info">
 					</div>
 				</form>
 			</p1>
 		<% } %>
 	</div>
-</header>
+</header> -->
+
 
 <div class="row text-center">
 	<div class="col-md-12">
@@ -27,8 +28,8 @@
 			<p1>
 				<form action="/books" method="GET" class="form-inline">
 					<div class="form-group">
-						<input type="text" name="search" placeholder="Bruh really..." class="form-control">
-						<input type="submit" value="Search" class="btn btn-primary">
+						<input type="text" name="search" placeholder="Search..." class="form-control">
+						<input type="submit" value="Search" class="btn btn-outline-primary">
 					</div>
 				</form> 
 			</p1>
@@ -36,18 +37,18 @@
 	</div>
 	<% books.forEach(function(book){ %>
 		<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-			<div class="card">
+			<div class="card bg-dark mb-3">
 				<img src="<%= book.image %>" class="card-img-top" alt="<%= book.title %>">
-				<div class="card-body">
+				<div class="card-body bg-light">
 					<h5 class="card-title"><%= book.title %></h5>
-					<a href="/books/<%= book.slug %>" class="btn btn-primary">More info</a>
+					<a href="/books/<%= book.slug %>" class="btn btn-outline-info">More info</a>
 				</div>
 			</div>
-		</div>
+		</div> 
 	<% }); %>
 </div>
 
-<!-- <nav aria-label="Page navigation">
+<nav aria-label="Page navigation">
 	<% if (pages && pages > 0) { %>
 		<ul class="pagination justify-content-center">
 			<% if (current == 1){ %>
@@ -93,8 +94,8 @@
 				
 		</ul>
 	<% } %>
-</nav> -->
-<nav aria-label="Page navigation">
+</nav>
+<!-- <nav aria-label="Page navigation">
     <% if (pages && pages > 0) { %>
     <ul class="pagination justify-content-center">
         <% if (current == 1) { %>
@@ -137,6 +138,6 @@
         <% } %>
     </ul>
     <% } %>
-</nav>
+</nav> -->
 
 <%- include("../partials/footer") %>

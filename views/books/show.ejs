@@ -2,9 +2,10 @@
 
 <div class ="row">
 	<div class="col-md-9">
-		<div class="card">
-			<img src="<%=book.image %>" class="card-img-top" alt="<%= book.title %>">
-			<div class="card-body">
+		<div class="card bg-dark mb-3" style="width: 35rem;">
+			<!-- <img src="<%=book.image %>" class="card-img-top" alt="<%= book.title %>"> -->
+			<img src="<%=book.image %>" class="card-img" alt="<%= book.title %>">
+			<div class="card-body bg-light">
 				<p class="float-right">Genre: <%= book.genre %></p>
 				<h5 class="card-title float-left"><%= book.title %></h5>
 				<div class="clearfix"></div>
@@ -15,19 +16,20 @@
 				<hr>
 				<p class="card-text"><%= book.description %></p>
 				<% if(currentUser && book.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
-					<a class="btn btn-xs btn btn-warning" href="/books/<%= book.slug %>/edit">Update</a>
+					<a class="btn btn-xs btn btn-outline-warning" href="/books/<%= book.slug %>/edit">Update</a>
 					<form class="delete-form" action="/books/<%= book.slug %>?_method=DELETE" method="POST">
-						<button class="btn btn-xs btn btn-danger">DELETE</button>
+						<button class="btn btn-xs btn btn-outline-danger">Delete</button>
 					</form>					
 				<% } %>
 			</div>
 		</div>
 		
 		<!-- Beginning of COMMENT SECTION ----->
-		<div class="card card-header" style="margin-top: 15px;">
+		<!-- <div class="card card-header" style="margin-top: 15px;"> -->
+		<div class="card card-header" style="width: 35rem;">
 			<!-- Setting up add new comment button used for collapsing -->
-			<div class="card-body">
-				<a class="btn btn-success float-right" role="button" data-toggle="collapse" href="#collapseComment" aria-expanded="false" aria-controls="collapseComment">Add New Comment</a>
+			<div class="card-body border-dark">
+				<a class="btn btn-outline-success float-right" role="button" data-toggle="collapse" href="#collapseComment" aria-expanded="false" aria-controls="collapseComment">Add New Comment</a>
 				<!-- Comment Section Title -->
 				<h4><Strong>Comments</Strong></h4>
 			<!-- </div> -->
@@ -55,7 +57,7 @@
 										<textarea class="form-control" name="comment[text]" placeholder="Begin to write a fabolous comment....." form="add-comment-form" rows="5" cols="70"></textarea>
 									</div>
 									<div class="form-group">
-										<button class="btn btn-success btn-sm">Post</button>
+										<button class="btn btn-outline-success btn-sm">Post</button>
 									</div>
 								</form>
 							</div>
@@ -90,10 +92,10 @@
 						<!-- If visitor is logged in and owner of posted comment, show the edit and delete buttons -->
 						<% if(currentUser && currentUser._id.equals(comment.author.id || currentUser && currentUser.isAdmin) || currentUser && currentUser.isAdmin){ %>
 							<!-- Edit button  used for collapsing edit comment form -->
-							<a class="btn btn-xs btn-warning" role="button" data-toggle="collapse" href="#collapseEdit<%= comment._id %>" aria-expanded="false" aria-controls="collapse<%= comment._id %>">Edit</a>	
+							<a class="btn btn-xs btn-outline-warning" role="button" data-toggle="collapse" href="#collapseEdit<%= comment._id %>" aria-expanded="false" aria-controls="collapse<%= comment._id %>">Edit</a>	
 							<!-- Delete button-->
 							<form id="delete-form" action="/books/<%= book.slug %>/comments/<%= comment._id %>?_method=DELETE" method="POST" style="display: inline;">
-								<button class="btn btn-xs btn-danger">Delete</button>	
+								<button class="btn btn-xs btn-outline-danger">Delete</button>	
 							</form>
 							<!-- Edit comment form -->
 							<div class="collapse" id="collapseEdit<%= comment._id %>">
@@ -108,7 +110,7 @@
 												<textarea class="form-control" name="comment[text]" placeholder="This is where you can post your comment..." form="edit-comment-form<%= comment._id %>" rows="5" cols="70"><%= comment.text %></textarea> 
 											</div>
 											<div class="form-group">
-												<button class="btn btn-warning btn-sm">Edit comment</button>
+												<button class="btn btn-outline-warning btn-sm">Edit comment</button>
 											</div>
 										</form>
 									</div>

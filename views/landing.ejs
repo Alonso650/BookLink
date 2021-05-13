@@ -1,9 +1,54 @@
-<h1>
-	Landing Page!
-</h1>
+<!DOCTYPE html>
+<html>
+	<head>
+    	<title>BookLink</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/stylesheets/landing.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
+    </head>
+<!-- <header class="jumbotron">
+	<div class="container">
+		<div class ="row">
+			<div class="col-sm">
+				<h1 class="row text-center">Welcome to BookLink</h1>
+				<p>View some of the submitted entries</p>
+				<p>
+					<a class="btn btn-outline-info btn-lg" href="/books">Click here to Enter BookLink</a>
+				</p>
+			</div>
+			<div class="col-sm">
+				
+			</div>
+			<div class="col-sm">
+				
+			</div>
+		</div>
+	</div>	
+</header> -->
+	<div class="container">
+		<% if(error && error.length > 0){ %>
+			<div class="alert alert-danger" role="alert">
+				<%= error %>
+			</div>
+		<% } %>
+		<% if(success && success.length > 0){ %>
+			<div class="alert alert-success" role="alert">
+				<%= success %>
+			</div>
+		<% } %>
+	</div>
 
-<p>
-	Welcome to this new Project
-</p>
+	<div id="landing-header">
+		<h1>Welcome to BookLink</h1>
+		<a href="/books" class="btn btn-lg btn-outline-success">View All Book Entries</a>
+	</div>
 
-<a href="/books">View All Book Recommendations</a>
+	<ul class="slideshow">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+<%- include("./partials/footer") %>

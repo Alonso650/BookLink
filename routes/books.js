@@ -30,10 +30,8 @@ var upload = multer({storage: storage, fileFiler: imageFilter})
 var cloudinary = require('cloudinary');
 cloudinary.config({
 	cloud_name: 'alonso650',
-	// api_key: process.env.CLOUDINARY_API_KEY,
-	api_key: '293184147984556',
-	// api_secret: process.env.CLOUDINARY_API_SECRET
-	api_secret: 'IPg2w_heyt4HbC2vIod8uRM6Jbg'
+	api_key: process.env.CLOUDINARY_API_KEY,
+	api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 // MongoClient.connect(proceess.env.DB_CONN, function(err, db){
@@ -44,54 +42,6 @@ cloudinary.config({
 
 
 // INDEX ROUTER
-// router.get("/", function(req, res){
-// 	var perPage = 8;
-// 	var pageQuery = parseInt(req.query.page);
-// 	var pageNumber = pageQuery ? pageQuery : 1;
-// 	var noMatch = null;
-	
-// 	if(req.query.search && req.xhr){
-// 		const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-// 		Book.find({name: regex}).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function(err, allBooks){
-// 			Book.count({name: regex}).exec(function(err, count){
-// 				if(err){
-// 					console.log(err);
-// 					res.redirect("back");
-// 				} else{
-// 					if(allBooks.length < 1){
-// 						noMatch = "No books match that query, please try again.";
-// 					}
-// 					res.render("books/index",{
-// 						books: allBooks,
-// 						current: pageNumber,
-// 						pages: Math.ceil(count/perPage),
-// 						noMatch: noMatch,
-// 						search: req.query.search
-// 					});
-// 				}
-// 			});
-// 		});
-// 	} else {
-// 		// get all books from DB
-// 		Book.find({}).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function(err, allBooks){
-// 			Book.count().exec(function(err, count){
-// 				if(err){
-// 					console.log(err);
-// 				} else{
-// 					res.render("books/index",{
-// 						books: allBooks,
-// 						current: pageNumber,
-// 						pages: Math.ceil(count/perPage),
-// 						noMatch: noMatch,
-// 						search: false
-// 					});
-// 				}
-// 			});
-// 		});
-// 	}
-// });
-
-
 router.get("/", function(req, res){
     var perPage = 8;
     var pageQuery = parseInt(req.query.page);
@@ -139,43 +89,6 @@ router.get("/", function(req, res){
 });
 
 
-// CREATE - add new campground to DB
- // router.post("/", middleware.isLoggedIn, upload.single('image'), function(req, res) {
- //    cloudinary.v2.uploader.upload(req.file.path, function(err, result) {
- //      if(err) {
- //        req.flash('error', err.message);
- //        return res.redirect('back');
- //      }
- //      // add cloudinary url for the image to the campground object under image property
- //      req.body.books.image = result.secure_url;
- //      // add image's public_id to campground object
- //      req.body.books.imageId = result.public_id;
- //      // add author to campground
- //      req.body.books.author = {
- //        id: req.user._id,
- //        username: req.user.username
- //      }
-		
-	  //parse the geographic data and save
-	  // geocoder.geocode(req.body.location, function(err, data){
-	  // if(err || !data.length){
-	  // req.flash('error', 'Invalid address');
-	  // return res.redirect('back');
-	  // }
-	  // // parse the object campground
-	  // req.body.campground.lat = data[0].latitude;
-	  // req.body.campground.lng = data[0].longitude;
-	  // req.body.campground.location = data[0].formattedAddress;
-	  
-// 	Book.create(req.body.books, function(err, books) {
-// 		if (err) {
-// 			req.flash('error', err.message);
-// 		  	return res.redirect('back');
-// 		}
-// 		res.redirect('/books/' + books.slug);
-// 		});
-// 	});
-// });
 
 // NEW - show form to create a new book entry
 // This usually gets declared first
@@ -200,16 +113,6 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
         username: req.user.username
       }
 		
-	  //parse the geographic data and save
-	  // geocoder.geocode(req.body.location, function(err, data){
-	  // if(err || !data.length){
-	  // req.flash('error', 'Invalid address');
-	  // return res.redirect('back');
-	  // }
-	  // // parse the object campground
-	  // req.body.campground.lat = data[0].latitude;
-	  // req.body.campground.lng = data[0].longitude;
-	  // req.body.campground.location = data[0].formattedAddress;
 	  
       Book.create(req.body.book, function(err, book) {
         if (err) {
@@ -252,43 +155,7 @@ router.get("/:slug/edit", middleware.checkBookOwnership, function(req, res){
 });
 
 
-// router.put("/:slug", upload.single('image'), middleware.checkBookOwner, function(req, res){
-// 	//find and update the correct book entry
-// 	Campground.findOne({slug: req.params.slug}, async function(err, books){
-// 		if(err){
-// 			req.flash("error", err.message);
-// 			res.redirect("back");
-// 		} else{
-// 			if(req.file){
-// 				try{
-// 					 await cloudinary.v2.uploader.destroy(books.imageId);
-// 					var result = await cloudinary.v2.uploader.upload(req.file.path);
-// 					books.imageId = result.public_id;
-// 					books.image = result.secure_url;
-// 				} catch(err){
-// 					req.flash("error", err.message);
-// 					return res.redirect("back");
-// 				}
-// 			}
-// 			books.title = req.body.books.title;
-// 			books.description = req.body.books.description;
-// 			books.save();
-// 			req.flash("success", "Successfully Updated!");
-// 			res.redirect("/books/" + books.slug);
-// 		}
-// 	});
-// });
-
  router.put("/:slug", upload.single('image'), middleware.checkBookOwnership, function(req, res){
-	//geocode
-	// geocoder.geocode(req.body.location, function(err, data){
-	// 	if(err || !data.length){
-	// 		req.flash('error', 'Invalid address');
-	// 		return res.redirect('back');
-	// 	}
-	// 	req.body.campground.lat = data[0].latitude;
-	// 	req.body.campground.lng = data[0].longitude;
-	// 	req.body.campground.location = data[0].formattedAddress;
 	
 	// find and update the correct campground
 	Book.findOne({slug: req.params.slug}, async function(err, book){
@@ -310,7 +177,7 @@ router.get("/:slug/edit", middleware.checkBookOwnership, function(req, res){
 			book.title = req.body.book.title;
 			book.description = req.body.book.description;
 			book.bookAuthor = req.body.book.bookAuthor;
-			// book.image = req.body.book.image;
+		    book.image = req.body.book.image;
 			book.genre = req.body.book.genre;
 			book.save();
 			req.flash("success", "Successfully Updated!");
