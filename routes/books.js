@@ -89,8 +89,7 @@ router.get("/", function(req, res){
 });
 
 
-<<<<<<< HEAD
-=======
+
 // CREATE - add new campground to DB
  // router.post("/", middleware.isLoggedIn, upload.single('image'), function(req, res) {
  //    cloudinary.v2.uploader.upload(req.file.path, function(err, result) {
@@ -119,7 +118,6 @@ router.get("/", function(req, res){
 // 		});
 // 	});
 // });
->>>>>>> ec09d85f2e6661688154172598de93adca7e9ef6
 
 // NEW - show form to create a new book entry
 // This usually gets declared first
@@ -144,10 +142,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
         username: req.user.username
       }
 		
-<<<<<<< HEAD
-=======
 
->>>>>>> ec09d85f2e6661688154172598de93adca7e9ef6
 	  
       Book.create(req.body.book, function(err, book) {
         if (err) {
