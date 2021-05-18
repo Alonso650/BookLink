@@ -33,7 +33,7 @@ app.use(flash());
 
 app.locals.moment = require('moment');
 app.use(require("express-session")({
-	secret: "pimpzilla",
+	secret: "hello1234",
 	resave: false,
 	saveUninitialized: false
 }));
