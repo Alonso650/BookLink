@@ -6,27 +6,27 @@
 	</div>
 	<div class="col-xs-12 col-md-6 col-lg-4">
 		<form action="/books/<%= book.slug %>/?_method=PUT" method="POST" enctype="multipart/form-data">
-			<div class="form-group">
+			<div id="title" class="form-group">
 				<label for="title">Title</label>
 				<input class="form-control" type="text" name="book[title]" value="<%= book.title %>">
 			</div>
-			<div class="form-group">
+			<div id="author" class="form-group">
 				<label for="author">Author</label>
 				<input class="form-control" type="text" name="book[bookAuthor]" value="<%= book.bookAuthor %>">
 			</div>
-			<div class="form-group">
+			<div id="genre" class="form-group">
 				<label for="genre">Genre</label>
 				<input class="form-control" type="text" name="book[genre]" value="<%= book.genre %>">
 			</div>
-			<div class="form-group">
+			<div id="description" class="form-group">
 				<label for="description">Description</label>
 				<input class="form-control" type="text" name="book[description]" value="<%= book.description %>">
 			</div>
-			<div class="form-group">
+			<div id="image" class="form-group">
 				<label for="image">Image</label>
 				<input type="file" id="image" name="image" accept="image/*" value="<%= book.image %>">
 			</div>
-			<div class="form-group">
+			<div id="submit" class="form-group">
 				<button class="btn btn-lg btn-primary btn-block">Update Entry</button>
 			</div>
 		</form>

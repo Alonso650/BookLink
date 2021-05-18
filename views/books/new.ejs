@@ -3,27 +3,27 @@
 <%- include("../partials/header") %>
 	<div class="row justify-content-center">
 		<div class="col-md-12 text-center">
-			<h1>Create A BookLink Entry</h1>
+			<h1 id="entryPage">Create A BookLink Entry</h1>
 		</div>
 		<div class="col-xs-12 col-md-6 col-lg-4">		
 			<form action="/books" method="POST" enctype="multipart/form-data">
-				<div class="form-group">
+				<div id="bookTitle" class="form-group">
 					<input class="form-control" type="text" name="book[title]" placeholder="name">
 				</div>
-				<div class="form-group">
+				<div id="bookAuthor" class="form-group">
 					<input class="form-control" type="text" name="book[bookAuthor]" placeholder="author">
 				</div>
-				<div class="form-group">
+				<div id="bookGenre" class="form-group">
 					<input class="form-control" type="text" name="book[genre]" placeholder="genre">
 				</div>
-				<div class="form-group">
+				<div id="image" class="form-group">
 					<label for="image">Image</label>
 					<input type="file" id="image" name="image" accept="image/*" required>
 				</div>
-				<div class="form-group">
+				<div id="description" class="form-group">
 					<input class="form-control" type="text" name="book[description]" placeholder="description">
 				</div>
-				<div class="form-group">
+				<div id="submit" class="form-group">
 					<button class="btn btn-lg btn-primary btn-block">Submit!</button>
 				</div>
 			</form>

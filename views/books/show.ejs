@@ -7,7 +7,7 @@
 			<img src="<%=book.image %>" class="card-img" alt="<%= book.title %>">
 			<div class="card-body bg-light">
 				<p class="float-right">Genre: <%= book.genre %></p>
-				<h5 class="card-title float-left"><%= book.title %></h5>
+				<h5 id="entryTitle" class="card-title float-left">Title: <%= book.title %></h5>
 				<div class="clearfix"></div>
 				<p>
 					<em>Posted By <a href="/users/<%= book.author.id %>"><%= book.author.username %></a>, <%= moment(book.createdAt).fromNow() %></em>
