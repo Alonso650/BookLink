@@ -11,19 +11,16 @@ middlewareObj.checkBookOwnership = function(req, res, next){
 				req.flash("error", "Book not found");
 				res.redirect("/books")
 			} else{
-				//does user own the campground?
 				if(foundBook.author.id.equals(req.user._id) || req.user.isAdmin){
 					next();
 				} else{
 					req.flash("error", "You don't have permission to do that");
-					// res.redirect("/campgrounds/" + req.params.id);
 					res.redirect("back");
 				}
 			}
 			});
 		} else{
 			req.flash("error", "You need to be logged in to do that");
-			// res.redirect("/campgrounds");
 			res.redirect("back");
 		}
 	}
